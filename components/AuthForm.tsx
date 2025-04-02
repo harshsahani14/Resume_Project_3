@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input"
 import Link from "next/link"
 import { toast } from "sonner"
 import { Form } from "./ui/form"
+import { useRouter } from "next/navigation"//why not next/router?
 
 
 const AuthFormSchema = (  type:FormType ) =>{
@@ -27,6 +28,9 @@ const AuthFormSchema = (  type:FormType ) =>{
 
 
 const AuthForm = ({type}:{type:FormType}) => {
+
+
+    const router = useRouter()
 
     const formSchema = AuthFormSchema(type);
 // 1. Define your form.
@@ -44,10 +48,12 @@ const form = useForm<z.infer<typeof formSchema>>({
     
     try{
         if(type==='sign-in'){
-            toast.success("Less go")
+            toast.success("Sign in successfully");
+            router.push("/");
         }
         else{
-            console.log('sign up')
+          toast.success("Account created successfully.Please sign in");
+          router.push("/sign-in")
         }
     }
     catch(error){

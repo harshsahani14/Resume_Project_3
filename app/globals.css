@@ -196,7 +196,7 @@
   .form {
     @apply w-full;
 
-    .label {
+    .root layout {
       @apply !text-light-100 !font-normal;
     }
 
